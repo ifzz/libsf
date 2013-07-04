@@ -109,6 +109,8 @@ sf_list(sf_any_t head, sf_list_t tail)
 sf_list_t
 sf_list_from_collection(sf_any_t collection)
 {
+  if (sf_list_type == sf_type_of(collection)) return sf_copy_to_temp_pool(collection);
+  
   sf_array_t array = sf_array_from_collection(collection);
   sf_list_t list = NULL;
   for (int i = sf_count(array) - 1; i >= 0; --i) {

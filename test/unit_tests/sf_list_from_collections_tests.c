@@ -17,10 +17,7 @@ SF_TEST_CASE(sf_list_from_collection_for_list_returns_list)
   
   sf_list_t list_out = sf_list_from_collection(list_in);
   
-  SF_ASSERT_INT_EQ(sf_count(list_out), 2);
-  SF_ASSERT_IS_EQ(sf_list_head(list_out), item1);
-  sf_list_t tail = sf_list_tail(list_out);
-  SF_ASSERT_IS_EQ(sf_list_head(tail), item2);
+  SF_ASSERT_PTR_EQ(list_out, list_in);
 }
 
 
