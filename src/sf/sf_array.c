@@ -97,11 +97,11 @@ each(sf_any_t self, sf_act_on act_on, void *context)
 static bool
 each_from_collection(sf_any_t item, void *context)
 {
-  struct from_collection_context *from_collections_contest = context;
-  sf_any_t *items = from_collections_contest->items;
-  int index = from_collections_contest->index;
+  struct from_collection_context *from_collection_contest = context;
+  sf_any_t *items = from_collection_contest->items;
+  int index = from_collection_contest->index;
   items[index] = sf_retain(item);
-  ++from_collections_contest->index;
+  ++from_collection_contest->index;
   return true;
 }
 
@@ -128,11 +128,11 @@ sf_array_from_collection(sf_any_t collection)
   
   struct _sf_array *array = array_for_count(sf_count(collection));
   if (array) {
-    struct from_collection_context from_collections_context = {
+    struct from_collection_context from_collection_context = {
       .items = array->items,
       .index = 0,
     };
-    sf_each(collection, each_from_collection, &from_collections_context);
+    sf_each(collection, each_from_collection, &from_collection_context);
   }
   return array;
 }
