@@ -19,7 +19,16 @@ SF_TEST_CASE(sf_array_from_collection_with_one_item)
 }
 
 
+SF_TEST_CASE(sf_array_from_collection_for_array_returns_array)
+{
+  sf_array_t collection = sf_array_from_items(sf_string("foo"), sf_int(42), sf_random_type);
+  sf_array_t array = sf_array_from_collection(collection);
+  SF_ASSERT_PTR_EQ(array, collection);
+}
+
+
 SF_TEST_SUITE(sf_array_from_collection_tests,
               sf_array_from_collection_with_NULL_returns_NULL,
-              sf_array_from_collection_with_one_item
+              sf_array_from_collection_with_one_item,
+              sf_array_from_collection_for_array_returns_array
               );

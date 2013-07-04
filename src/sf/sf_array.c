@@ -124,6 +124,8 @@ sf_array(sf_any_t *items, int count)
 sf_array_t
 sf_array_from_collection(sf_any_t collection)
 {
+  if (sf_array_type == sf_type_of(collection)) return sf_copy_to_temp_pool(collection);
+  
   struct _sf_array *array = array_for_count(sf_count(collection));
   if (array) {
     struct from_collection_context from_collections_context = {
