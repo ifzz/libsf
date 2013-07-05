@@ -7,6 +7,9 @@
 #include "sf_type.h"
 
 
+static bool
+build_reversed_list(sf_any_t item, void *context);
+
 static int
 count(sf_any_t self);
 
@@ -16,18 +19,8 @@ dealloc(sf_any_t self);
 static bool
 each(sf_any_t self, sf_act_on act_on, void *context);
 
-static bool
-each_from_collection(sf_any_t item, void *context);
-
 static sf_string_t
 string_from(sf_any_t self);
-
-
-struct from_collection_context
-{
-  sf_any_t *items;
-  int index;
-};
 
 
 struct _sf_list
@@ -46,6 +39,15 @@ void
 _sf_list_init(void)
 {
   sf_list_type = sf_type("sf_list_t", dealloc, string_from, NULL, NULL, count, each);
+}
+
+
+static bool
+build_reversed_list(sf_any_t item, void *context)
+{
+  sf_list_t *list = context;
+  *list = sf_list(item, *list);
+  return true;
 }
 
 
@@ -76,18 +78,6 @@ each(sf_any_t self, sf_act_on act_on, void *context)
     if (not keep_going) return false;
     list = list->tail;
   }
-  return true;
-}
-
-
-static bool
-each_from_collection(sf_any_t item, void *context)
-{
-  struct from_collection_context *from_collection_contest = context;
-  sf_any_t *items = from_collection_contest->items;
-  int index = from_collection_contest->index;
-  items[index] = item;
-  ++from_collection_contest->index;
   return true;
 }
 
@@ -128,16 +118,12 @@ sf_list_head(sf_list_t list)
 
 
 sf_list_t 
-sf_list_reversed(sf_list_t list)
+sf_list_reversed(sf_any_t collection)
 {
-  if (sf_count(list) <= 1) return sf_copy_to_temp_pool(list);
+  if (sf_count(collection) <= 1) return sf_copy_to_temp_pool(collection);
   
   sf_list_t reversed = NULL;
-  while (list) {
-    sf_any_t head = list->head;
-    list = list->tail;
-    reversed = sf_list(head, reversed);
-  }
+  sf_each(collection, build_reversed_list, &reversed);
   return reversed;
 }
 

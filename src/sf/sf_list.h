@@ -21,7 +21,7 @@ sf_any_t
 sf_list_head(sf_list_t list);
 
 sf_list_t
-sf_list_reversed(sf_list_t list);
+sf_list_reversed(sf_any_t collection);
 
 sf_list_t
 sf_list_tail(sf_list_t list);
