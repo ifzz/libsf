@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "sf_collection.h"
+#include "sf_key.h"
 #include "sf_memory.h"
 #include "sf_object.h"
 #include "sf_random.h"
@@ -22,6 +23,9 @@ each(sf_any_t self, sf_act_on act_on, void *context);
 
 static bool
 each_from_collection(sf_any_t item, void *context);
+
+static bool
+is_equal(sf_any_t self, sf_any_t other);
 
 static sf_string_t
 string_from(sf_any_t self);
@@ -48,7 +52,7 @@ sf_type_t sf_array_type;
 void
 _sf_array_init(void)
 {
-  sf_array_type = sf_type("sf_array_t", dealloc, string_from, NULL, NULL, count, each);
+  sf_array_type = sf_type("sf_array_t", dealloc, string_from, is_equal, NULL, count, each);
 }
 
 
@@ -102,6 +106,20 @@ each_from_collection(sf_any_t item, void *context)
   int index = from_collection_contest->index;
   items[index] = sf_retain(item);
   ++from_collection_contest->index;
+  return true;
+}
+
+
+static bool
+is_equal(sf_any_t self, sf_any_t other)
+{
+  if (sf_count(self) != sf_count(other)) return false;
+  
+  sf_array_t array = self;
+  sf_array_t other_array = other;
+  for (int i = 0; i < array->count; ++i) {
+    if (not sf_is_equal(array->items[i], other_array->items[i])) return false;
+  }
   return true;
 }
 

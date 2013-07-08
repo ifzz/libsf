@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D44A9051178A440600D4E3C7 /* sf_array_is_equal_tests.c in Sources */ = {isa = PBXBuildFile; fileRef = D44A9050178A440600D4E3C7 /* sf_array_is_equal_tests.c */; };
 		D4F0842317855452007BABBC /* sf.c in Sources */ = {isa = PBXBuildFile; fileRef = D4F0840017855452007BABBC /* sf.c */; };
 		D4F0842417855452007BABBC /* sf.h in Headers */ = {isa = PBXBuildFile; fileRef = D4F0840117855452007BABBC /* sf.h */; };
 		D4F0842517855452007BABBC /* sf_array.c in Sources */ = {isa = PBXBuildFile; fileRef = D4F0840217855452007BABBC /* sf_array.c */; };
@@ -163,6 +164,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D44A9050178A440600D4E3C7 /* sf_array_is_equal_tests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sf_array_is_equal_tests.c; sourceTree = "<group>"; };
 		D4AA22591785505E00A80BBF /* libsf.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libsf.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4F0838217855094007BABBC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		D4F083CF17855239007BABBC /* libsf_test.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libsf_test.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -408,36 +410,37 @@
 			isa = PBXGroup;
 			children = (
 				D4F08484178554DB007BABBC /* main.c */,
+				D4F0848A178554DB007BABBC /* sf_array_tests.c */,
 				D4F08485178554DB007BABBC /* sf_array_from_collections_tests.c */,
 				D4F08486178554DB007BABBC /* sf_array_from_items_tests.c */,
 				D4F08487178554DB007BABBC /* sf_array_initializer_tests.c */,
+				D44A9050178A440600D4E3C7 /* sf_array_is_equal_tests.c */,
 				D4F08488178554DB007BABBC /* sf_array_reversed_tests.c */,
 				D4F08489178554DB007BABBC /* sf_array_shuffled_tests.c */,
-				D4F0848A178554DB007BABBC /* sf_array_tests.c */,
+				D4F0848D178554DB007BABBC /* sf_assert_tests.c */,
 				D4F0848B178554DB007BABBC /* sf_assert_bool_tests.c */,
 				D4F0848C178554DB007BABBC /* sf_assert_c_string_tests.c */,
-				D4F0848D178554DB007BABBC /* sf_assert_tests.c */,
+				D4F08491178554DB007BABBC /* sf_collection_tests.c */,
 				D4F0848E178554DB007BABBC /* sf_collection_collect_tests.c */,
 				D4F0848F178554DB007BABBC /* sf_collection_each_tests.c */,
 				D4F08490178554DB007BABBC /* sf_collection_filter_tests.c */,
-				D4F08491178554DB007BABBC /* sf_collection_tests.c */,
 				D4F08492178554DB007BABBC /* sf_ensemble_tests.c */,
-				D4F08493178554DB007BABBC /* sf_hash_from_keys_and_values_tests.c */,
 				D4F08494178554DB007BABBC /* sf_hash_tests.c */,
+				D4F08493178554DB007BABBC /* sf_hash_from_keys_and_values_tests.c */,
 				D4F08495178554DB007BABBC /* sf_int_tests.c */,
+				D4F0849A178554DB007BABBC /* sf_list_tests.c */,
 				D4F08496178554DB007BABBC /* sf_list_from_collections_tests.c */,
 				D4F08497178554DB007BABBC /* sf_list_from_items_tests.c */,
 				D4F08498178554DB007BABBC /* sf_list_initializer_tests.c */,
 				D4F08499178554DB007BABBC /* sf_list_reversed_tests.c */,
-				D4F0849A178554DB007BABBC /* sf_list_tests.c */,
 				D4F0849B178554DB007BABBC /* sf_long_tests.c */,
 				D4F0849C178554DB007BABBC /* sf_pair_tests.c */,
 				D4F0849D178554DB007BABBC /* sf_random_tests.c */,
+				D4F084A2178554DB007BABBC /* sf_string_tests.c */,
 				D4F0849E178554DB007BABBC /* sf_string_from_prefix_and_collection_tests.c */,
 				D4F0849F178554DB007BABBC /* sf_string_from_separator_and_collection_tests.c */,
 				D4F084A0178554DB007BABBC /* sf_string_from_suffix_and_collection_tests.c */,
 				D4F084A1178554DB007BABBC /* sf_string_initializer_tests.c */,
-				D4F084A2178554DB007BABBC /* sf_string_tests.c */,
 			);
 			path = unit_tests;
 			sourceTree = "<group>";
@@ -680,6 +683,7 @@
 				D4F084BF178554DC007BABBC /* sf_string_from_suffix_and_collection_tests.c in Sources */,
 				D4F084C0178554DC007BABBC /* sf_string_initializer_tests.c in Sources */,
 				D4F084C1178554DC007BABBC /* sf_string_tests.c in Sources */,
+				D44A9051178A440600D4E3C7 /* sf_array_is_equal_tests.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -884,6 +888,7 @@
 				D4F083D217855239007BABBC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D4F0847A178554A9007BABBC /* Build configuration list for PBXNativeTarget "unit_tests" */ = {
 			isa = XCConfigurationList;
@@ -892,6 +897,7 @@
 				D4F0847C178554A9007BABBC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D4F084CC1785554C007BABBC /* Build configuration list for PBXNativeTarget "stress_tests" */ = {
 			isa = XCConfigurationList;
@@ -900,6 +906,7 @@
 				D4F084CE1785554C007BABBC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

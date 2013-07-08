@@ -5,6 +5,7 @@
 SF_EXTERN_TEST_SUITE(sf_array_from_collection_tests);
 SF_EXTERN_TEST_SUITE(sf_array_from_items_tests);
 SF_EXTERN_TEST_SUITE(sf_array_initializer_tests);
+SF_EXTERN_TEST_SUITE(sf_array_is_equal_tests);
 SF_EXTERN_TEST_SUITE(sf_array_reversed_tests);
 SF_EXTERN_TEST_SUITE(sf_array_shuffled_tests);
 
@@ -43,6 +44,7 @@ SF_TEST_SUITE(sf_array_tests,
               sf_array_from_collection_tests,
               sf_array_from_items_tests,
               sf_array_initializer_tests,
+              sf_array_is_equal_tests,
               sf_array_reversed_tests,
               sf_array_shuffled_tests
               );
