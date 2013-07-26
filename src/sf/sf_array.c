@@ -35,6 +35,7 @@ struct from_collection_context
 {
   sf_any_t *items;
   int index;
+  bool reversed;
 };
 
 
@@ -105,7 +106,7 @@ each_from_collection(sf_any_t item, void *context)
   sf_any_t *items = from_collection_contest->items;
   int index = from_collection_contest->index;
   items[index] = sf_retain(item);
-  ++from_collection_contest->index;
+  from_collection_contest->index += from_collection_contest->reversed ? -1 : 1;
   return true;
 }
 
@@ -149,6 +150,7 @@ sf_array_from_collection(sf_any_t collection)
     struct from_collection_context from_collection_context = {
       .items = array->items,
       .index = 0,
+      .reversed = false,
     };
     sf_each(collection, each_from_collection, &from_collection_context);
   }
@@ -173,16 +175,21 @@ sf_array_items(sf_array_t array)
 
 
 sf_array_t
-sf_array_reversed(sf_array_t array)
+sf_array_reversed(sf_any_t collection)
 {
-  int count = sf_count(array);
-  if (count < 2) return sf_copy_to_temp_pool(array);
+  int count = sf_count(collection);
+  if (count < 2 and sf_array_type == sf_type_of(collection)) {
+    return sf_copy_to_temp_pool(collection);
+  }
   
   struct _sf_array *reversed = array_for_count(count);
   if (reversed) {
-    for (int i = 0, j = count - 1; i < count; ++i, --j) {
-      reversed->items[i] = sf_retain(array->items[j]);
-    }
+    struct from_collection_context from_collection_context = {
+      .items = reversed->items,
+      .index = count - 1,
+      .reversed = true,
+    };
+    sf_each(collection, each_from_collection, &from_collection_context);
   }
   return reversed;
 }

@@ -24,7 +24,7 @@ sf_any_t const*
 sf_array_items(sf_array_t array);
 
 sf_array_t
-sf_array_reversed(sf_array_t array);
+sf_array_reversed(sf_any_t collection);
 
 // A Fisher-Yates shuffle as described in
 // http://en.wikipedia.org/wiki/Fisher-Yates_shuffle .
